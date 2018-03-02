@@ -27,7 +27,16 @@ def bracket_to_index(inst):
     return res
 
 def decomposition(inst):
+    """
+    Decompose a given bracket-dot presented RNA secondary structure into several basic components 
+    in tree-presentation.
+    A basic component is presented by a list of its paired bases positions
+    """
     def aux(ind,lst):
+        """
+        A recursive function decomposing a given RNA secondary structure in index list 
+        from a given starting position.
+        """
         tmp = []
         res = []
         k = ind
