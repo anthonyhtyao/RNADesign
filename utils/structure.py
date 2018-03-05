@@ -59,5 +59,5 @@ def decomposition(inst):
 
 
 if __name__ == '__main__':
-    s = '((...))'
+    s = '(((.((...))((...)))))'
     print(decomposition(s))
