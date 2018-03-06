@@ -1,3 +1,4 @@
+from anytree import RenderTree
 from utils.structure import decomposition
 from models.base import LoopNode
 
@@ -25,3 +26,12 @@ class Tree:
                 for bp in e[1:]:
                     parent_dict[bp] = node
         return tree
+
+    def print_tree(self):
+        """
+        A simple tree printer
+        """
+        for pre,_,node in RenderTree(self.root):
+            treestr = u"%s%s" % (pre,node.label)
+            print(treestr.ljust(0),node.closing_bp)
+

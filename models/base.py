@@ -1,4 +1,5 @@
 from collections import namedtuple
+from anytree import NodeMixin
 from utils.structure import decomposition
 
 BasePair = namedtuple('BasePair', ('fst','snd'))
@@ -36,12 +37,16 @@ class Loop:
             self.name = 'Multiple Loop'
             self.label = 'M'
 
-class LoopNode(Loop):
+        # The base is the root of tree-presented structure
+        if self.closing_bp.fst == -1:
+            self.name = 'Root'
+            self.label = 'R'
+
+class LoopNode(Loop, NodeMixin):
 
     def __init__(self, lst, parent=None):
         super().__init__(lst)
         self.parent = parent
-        self.children = []
 
     def __str__(self):
         return self.name
