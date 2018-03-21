@@ -1,5 +1,5 @@
 import unittest
-from anytree import LevelOrderIter, findall_by_attr, findall
+from anytree import PreOrderIter, findall_by_attr, findall
 from collections import Counter
 from models.tree import Tree
 import utils.structure as stc
@@ -31,16 +31,16 @@ class TreeTest(unittest.TestCase):
     """
 
     def setUp(self):
-        self.structure = '(((.((...))((...)))))'
+        self.structure = '..(((...(((...((((...))))..((((...(((.....)))...)))).....)))...)))...'
         self.tree = Tree.from_bracket(self.structure)
 
     def test_tree_construction(self):
         """
-        Test if tree constructor returns same amount of nodes as expected.
+        Test if tree presentation.is same as expected
         """
-        true_count = Counter({'R':1,'H':2,'M':1,'S':4})
-        nodes_count = Counter(map(lambda node:node.label, LevelOrderIter(self.tree.root)))
-        self.assertEqual(true_count, nodes_count)
+        true = 'RSSISSMSSSHSSSISSH'
+        nodes = ''.join(map(lambda node:node.label, PreOrderIter(self.tree.root)))
+        self.assertEqual(true, nodes)
 
     def test_ends_with_H(self):
         """
